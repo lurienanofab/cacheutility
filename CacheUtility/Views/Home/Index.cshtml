@@ -1,0 +1,67 @@
+﻿@model CacheUtility.Models.HomeModel
+@{
+    ViewBag.Title = "Cache Utility";
+    string error = (string)ViewBag.ErrorMessage;
+    string success = (string)ViewBag.SuccessMessage;
+    string warning = (string)ViewBag.WarningMessage;
+}
+
+<div class="container-fluid" style="padding-top: 10px;">
+    <strong>Redis Server Ping: @Model.Ping</strong>
+
+    <hr />
+
+    @using (Html.BeginForm("", "", null, FormMethod.Post, new { @autocomplete = "off" }))
+    {
+        <button type="submit" class="btn btn-default btn-sm" name="Command" value="get-value">Get Value</button>
+        <button type="submit" class="btn btn-default btn-sm" name="Command" value="set-value">Set Value</button>
+        <button type="submit" class="btn btn-default btn-sm" name="Command" value="delete-key">Delete Key</button>
+
+        if (!string.IsNullOrEmpty(error))
+        {
+            <div class="alert alert-danger alert-dismissible" role="alert" style="margin-top: 10px;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                @error
+            </div>
+        }
+
+        if (!string.IsNullOrEmpty(success))
+        {
+            <div class="alert alert-success alert-dismissible" role="alert" style="margin-top: 10px;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                @success
+            </div>
+        }
+
+        if (!string.IsNullOrEmpty(warning))
+        {
+            <div class="alert alert-warning alert-dismissible" role="alert" style="margin-top: 10px;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                @warning
+            </div>
+        }
+
+        <div class="cache-form">
+            <div class="form-group">
+                <label>key</label>
+                <div class="cache-input-container">
+                    @Html.TextBoxFor(x => x.Key, new { @class = "control-label cache-key", @spellcheck = false })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>expiry</label>
+                <div class="cache-input-container">
+                    @Html.TextBoxFor(x => x.Expiry, new { @class = "control-label cache-expiry", @spellcheck = false })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>object json</label>
+                <div class="cache-input-container">
+                    @Html.TextAreaFor(x => x.ObjectJson, 50, 50, new { @class = "control-label cache-output", @spellcheck = false })
+                </div>
+            </div>
+        </div>
+    }
+</div>

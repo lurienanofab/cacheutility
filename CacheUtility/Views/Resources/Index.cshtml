@@ -1,0 +1,95 @@
+﻿@using CacheUtility.Models;
+
+@model ResourcesModel
+@{
+    ViewBag.Title = "Resource";
+}
+
+<div class="container-fluid">
+    <h2>Resources</h2>
+
+    <hr />
+
+    @using (Html.BeginForm("Index", "Resources", FormMethod.Post, new { @id = "form1", @class = "form-horizontal" }))
+    {
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(x => x.Active, new { @class = "active-checkbox" })
+                        Active
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.ResourceName, "Resource Name", new { @class = "control-label col-sm-2" })
+            <div class="col-sm-3">
+                @Html.TextBoxFor(x => x.ResourceName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.ProcessTechName, "Process Tech Name", new { @class = "control-label col-sm-2" })
+            <div class="col-sm-3">
+                @Html.TextBoxFor(x => x.ProcessTechName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.LabDisplayName, "Lab Name", new { @class = "control-label col-sm-2" })
+            <div class="col-sm-3">
+                @Html.TextBoxFor(x => x.LabDisplayName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.BuildingName, "Building Name", new { @class = "control-label col-sm-2" })
+            <div class="col-sm-3">
+                @Html.TextBoxFor(x => x.BuildingName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" title="Displays resources stored in the cache that match the specified criteria.">Search</button>
+                @Html.ActionLink("Reset", "Index", null, new { @class = "btn btn-default", @title = "Clears the current search and displays all resources stored in the cache." })
+                @Html.ActionLink("Reload", "Reload", null, new { @class = "btn btn-default", @title = "Clears the current search, reloads the cache from the database, and displays all resources stored in the cache." })
+                @Html.ActionLink("Delete", "Delete", null, new { @class = "btn btn-default", @title = "Removes all resources from the cache without reloading." })
+            </div>
+        </div>
+    }
+
+    <hr />
+
+    @if (Model != null && Model.Items.Count() > 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ResourceID</th>
+                    <th>Building</th>
+                    <th>Lab</th>
+                    <th>ProcessTech</th>
+                    <th>Resource</th>
+                    <th style="text-align: center;">Active</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items.OrderBy(x => x.BuildingName).ThenBy(x => x.LabDisplayName).ThenBy(x => x.ProcessTechName).ThenBy(x => x.ResourceName))
+                {
+                    <tr>
+                        <td>@Html.ActionLink(item.ResourceID.ToString(), "Detail", new { resourceId = item.ResourceID })</td>
+                        <td>@item.BuildingName</td>
+                        <td>@item.LabDisplayName</td>
+                        <td>@item.ProcessTechName</td>
+                        <td>@item.ResourceName</td>
+                        <td style="text-align: center;">@item.ResourceIsActive</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div>
+            <em class="text-muted">No resources were found.</em>
+        </div>
+    }
+</div>

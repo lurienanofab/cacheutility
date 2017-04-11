@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Browse";
+}
+
+@section styles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" />
+}
+
+<div class="container-fluid" style="padding-top: 10px;">
+    <div class="form-group">
+        <label>database</label>
+        <div class="cache-input-container" style="width: 50px; display: inline-block;">
+            <input type="text" class="form-control cache-control database" style="text-align: center;" value="@ViewBag.Database" />
+        </div>
+        <a href="#" class="btn btn-default btn-sm select-button">SELECT</a>
+    </div>
+
+    <div class="cache-input-container">
+        <div class="cache-control keys"></div>
+    </div>
+
+    <a name="output"></a>
+
+    <div class="cache-input-container" style="margin-top: 20px;">
+        <textarea class="control-label cache-output" rows="50" cols="50" spellcheck="false"></textarea>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-treeview/1.2.0/bootstrap-treeview.min.js"></script>
+
+    <script>
+        var ajaxUrl = '@Url.Action("Ajax")';
+
+        function getTree(keys) {
+            var result = $.map(keys, function (value, index) {
+                // index is the type
+                // value is the keys
+                return {
+                    "text": index,
+                    "nodes": $.map(value, function (key) {
+                        return { "text": key };
+                    })
+                };
+            });
+
+            result[0].state = { expanded: true };
+
+            return result;
+        }
+
+        function load() {
+            var databaseId = parseInt($(".database").val());
+            if (!isNaN(databaseId)) {
+                $.ajax({
+                    "url": ajaxUrl,
+                    "data": { "command": "load", "database": databaseId },
+                    "method": "POST"
+                }).done(function (data) {
+                    $(".keys").treeview({
+                        "levels": 0,
+                        "backColor": "#000",
+                        "borderColor": "#444",
+                        "onhoverColor": "#333",
+                        "selectedBackColor": "#555",
+                        "selectedColor": "#00ff00",
+                        "data": getTree(data.keys),
+                        "onNodeSelected": function (e, data) {
+                            if (data.parentId !== undefined) {
+                                var parent = $(".keys").treeview("getNode", data.parentId);
+                                var type = parent.text;
+                                var key = data.text;
+                                $.ajax({
+                                    "url": ajaxUrl,
+                                    "data": { "command": "get", "database": databaseId, "type": type, "key": key },
+                                    "method": "POST"
+                                }).done(function (data) {
+                                    $(".cache-output").val("ttl: " + data.ttl + '\n');
+                                    for (var i = 0; i < data.value.length; i++) {
+                                        $(".cache-output").val($(".cache-output").val() + data.value[i] + '\n');
+                                    }
+                                    $(".cache-output")[0].scrollIntoView();
+                                });
+                            }
+                        }
+                    });
+                });
+            }
+        }
+
+        $(".select-button").on("click", function (e) {
+            e.preventDefault();
+            load();
+        });
+
+        load();
+    </script>
+}

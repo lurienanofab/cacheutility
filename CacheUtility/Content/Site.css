@@ -1,0 +1,84 @@
+﻿body {
+    padding: 5px;
+    margin: 0;
+    background-color: #777;
+    color: #f7f7f7;
+}
+
+body,
+input,
+button,
+select,
+textarea {
+    font-family: 'Courier New';
+}
+
+a {
+    color: #0000ff;
+    font-weight: bold;
+}
+
+a:focus, a:hover{
+    color: #0000ff;
+    font-weight: bold;
+}
+
+.text-muted {
+    color: #bababa;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #808080;
+}
+
+.cache-form {
+    margin-top: 20px;
+}
+
+.cache-input-container {
+    padding: 5px;
+    background-color: #000;
+}
+
+.cache-control,
+.cache-key,
+.cache-typename,
+.cache-expiry,
+.cache-output {
+    padding: 0;
+    border: none;
+    width: 100%;
+    background-color: #000;
+    color: #00ff00;
+}
+
+.cache-output {
+    height: 450px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.cache-sliding {
+    display: inline-block;
+    position: relative;
+    margin-right: 5px;
+}
+
+    .cache-sliding input[type='checkbox'] {
+        margin: 0;
+        position: absolute;
+        top: -10px;
+    }
+
+.cache-error {
+    color: #ffbbbb;
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: unset;
+}
+
+.keys .list-group {
+    margin-bottom: 0;
+}

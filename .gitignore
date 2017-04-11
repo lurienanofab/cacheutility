@@ -1,0 +1,10 @@
+.vs/
+bin/
+obj/
+packages/
+TestResults/
+*.suo
+*.user
+CacheUtility/Web.config
+CacheUtility/Web.Debug.config
+CacheUtility/Web.Release.config

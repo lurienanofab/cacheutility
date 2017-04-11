@@ -1,0 +1,179 @@
+﻿@using LNF.Models.Scheduler;
+
+@model ResourceModel
+@{
+    ViewBag.Title = "Resource Detail";
+}
+
+<div class="container-fluid">
+    <h2>Resource Detail</h2>
+
+    <hr />
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ResourceID</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.ResourceID</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ResourceName</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.ResourceName</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">BuildingID</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.BuildingID</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">BuildingName</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.BuildingName</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">LabID</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.LabID</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">LabDisplayName</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.LabDisplayName</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ProcessTechID</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.ProcessTechID</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ProcessTechName</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.ProcessTechName</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Granularity</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.Granularity</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ReservFence</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.ReservFence</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">MinReservTime</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.MinReservTime</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">MaxReservTime</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.MaxReservTime</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">MaxAlloc</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.MaxAlloc</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Offset</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.Offset</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">GracePeriod</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.GracePeriod</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">AutoEnd</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.AutoEnd</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">MinCancelTime</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.MinCancelTime</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">UnloadTime</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.UnloadTime</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">AuthDuration</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.AuthDuration</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">AuthState</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.AuthState</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">IsSchedulable</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.IsSchedulable</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">State</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.State</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">StateNotes</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.StateNotes</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">IsReady</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.IsReady</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ResourceIsActive</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.ResourceIsActive</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">HelpdeskEmail</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.HelpdeskEmail</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">WikiPageUrl</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.WikiPageUrl</p>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <em class="text-muted">Use the browser's back button to return the full list.</em>
+</div>
