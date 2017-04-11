@@ -6,10 +6,48 @@
     string warning = (string)ViewBag.WarningMessage;
 }
 
-<div class="container-fluid" style="padding-top: 10px;">
-    <strong>Redis Server Ping: @Model.Ping</strong>
+@section styles{
+    <style>
+        .server-info .form-group {
+            margin-bottom: 0;
+        }
+    </style>
+}
 
-    <hr />
+<div class="container-fluid" style="padding-top: 10px;">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">redis server</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal server-info">
+                <div class="form-group">
+                    <label class="control-label col-md-1">host</label>
+                    <div class="col-md-11">
+                        <p class="form-control-static">
+                            @Model.Host
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-1">ping</label>
+                    <div class="col-md-11">
+                        <p class="form-control-static">
+                            @Model.Ping
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-1">database</label>
+                    <div class="col-md-11">
+                        <p class="form-control-static">
+                            @Model.DatabaseId
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @using (Html.BeginForm("", "", null, FormMethod.Post, new { @autocomplete = "off" }))
     {
@@ -57,9 +95,9 @@
             </div>
 
             <div class="form-group">
-                <label>object json</label>
+                <label>value</label>
                 <div class="cache-input-container">
-                    @Html.TextAreaFor(x => x.ObjectJson, 50, 50, new { @class = "control-label cache-output", @spellcheck = false })
+                    @Html.TextAreaFor(x => x.ObjectJson, 10, 50, new { @class = "control-label cache-output", @spellcheck = false })
                 </div>
             </div>
         </div>

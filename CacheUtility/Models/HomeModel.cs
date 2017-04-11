@@ -7,6 +7,8 @@ namespace CacheUtility.Models
     public class HomeModel
     {
         public string Command { get; set; }
+        public string Host { get; set; }
+        public int DatabaseId { get; set; }
         public TimeSpan Ping { get; set; }
         public string Key { get; set; }
         public TimeSpan? Expiry { get; set; }

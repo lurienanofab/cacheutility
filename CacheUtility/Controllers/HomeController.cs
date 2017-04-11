@@ -32,6 +32,8 @@ namespace CacheUtility.Controllers
 
             TimeSpan? ping = RedisCache.Default.Ping();
             model.Ping = ping.GetValueOrDefault(TimeSpan.Zero);
+            model.Host = string.Format("{0}:{1}", RedisConnection.Configuration.Host, RedisConnection.Configuration.Port);
+            model.DatabaseId = RedisConnection.Configuration.DatabaseId;
 
             return View(model);
         }
